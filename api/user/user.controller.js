@@ -21,13 +21,13 @@ exports.create = function(req,res){
     try{
         req.body.role = "user";
         UserModel.create(req.body)
-        .then( function (user){
+        .then( async function (user){
+            await UserSession.create({user: user._id}, (err, raw)=>{ 
+                        
+                res.send({success: true, jwt: raw._id, user})
+            })
             // sending access token
-            res.send({
-                success: true,
-                user,
-                message: "You have successfully signed up."
-            }); 
+           
         })
         .catch(function(error){
             //console.log('error')
