@@ -84,6 +84,7 @@ exports.login = async function(req, res){
     try{
       
         let {email, password} = req.body
+        console.log(req.body)
         await UserModel.findOne({
             email
         }, (err,user)=>{
