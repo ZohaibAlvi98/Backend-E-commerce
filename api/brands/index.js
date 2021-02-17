@@ -10,4 +10,6 @@ router.get('fetch-all-brands',controller.fetchAllBrands);
 
 router.post('/create',controller.create);
 
+router.get('/activate-account/:token', controller.activateAccount);
+
 module.exports = router;

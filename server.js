@@ -8,6 +8,8 @@ const session = require('express-session');
 const busboyBodyParser = require('busboy-body-parser');
 const path = require('path');
 const app = express();
+var compression = require('compression');
+var cors = require('cors');
 
 const PORT = process.env.PORT;
 
@@ -24,6 +26,25 @@ app.get('/dist-user-images/:filename', function(req, res) {
   res.sendFile(path.resolve('./dist/App/assets/images/user/' + filename));
 });
 
+app.use(function(req, res, next) {
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Origin', '*');
+
+  // Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+
+  // Request headers you wish to allow
+  res.setHeader('Access-Control-Allow-Headers', "access-control-allow-headers,access-control-allow-origin,content-type,Authorization_Token,Service_ID");
+
+  if (req.method === 'OPTIONS') {
+      res.sendStatus(200);
+  } else {
+      next();
+  }
+});
+
+app.use(compression());
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 require('./config')(app);

@@ -13,6 +13,17 @@ var BrandSchema = new Schema({
         type:String,
         required: true
     },
+    adminApproval:{
+        type: Boolean,
+        default: false
+    },
+    accountActivated:{
+        isTrue : {
+            type: Boolean,
+            default: false
+        },
+        token: String
+    },
     brandName:{
         lowercase:true,
         type:String,
@@ -47,7 +58,7 @@ var BrandSchema = new Schema({
     logo:{
         type: String
     },
-    CNICPhoto:{
+    cnicPhoto:{
         required: true,
         type: String
     },
@@ -79,7 +90,7 @@ var BrandSchema = new Schema({
         type: String,
       
     },
-    comanyNumber:{
+    companyContactNumber:{
         type: String,
         
     },

@@ -10,7 +10,7 @@ const UserSessionModel = require('./userSession.model');
 const UserModel = require('../user/user.model');
 
 exports.verify = async function(req, res) {
-    req.query.token = req.header('Authorization')
+    req.query.token = req.header('Authorization_Token')
    
   
     if (req.query.token != undefined) {
