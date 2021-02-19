@@ -12,7 +12,7 @@ const htmlTemplateService = require('../utility/htmltemplate')
 const BrandModel = require('./brands.model')
 // const UtilService = require('../utility/util');
 // const htmlTemplateService = require('../utility/htmltemplates');
-const UserSession = require('../userSession/userSession.model'); 
+const BrandSession = require('../brandSession/brandSession.model'); 
 const _ = require('lodash');
 
 exports.fetchAllBrands = async(req,res)=>{
@@ -112,4 +112,53 @@ exports.activateAccount = async(req,res)=>{
     } catch (error) {
         return res.send({success: false, message: error});
     }
+}
+
+exports.login = async function(req, res){
+    try{
+      
+        let {email, password} = req.body
+        console.log(req.body)
+       
+        await BrandModel.findOne({
+            email
+        }, (err,brand)=>{
+            if(err){
+                res.send({
+                    success: false,
+                    message: err
+                })    
+            }
+            if(brand!=null){
+                if(!brand.adminApproval){
+                    res.send({
+                        success: false,
+                        message: 'Your account is not approved by our team yet. Please wait for approval.'
+                    })
+                }
+                else if(brand.authenticate(password)){
+                    BrandSession.create({brand: brand._id}, (err, raw)=>{ 
+                        
+                        res.send({success: true, jwt: raw._id, brand})
+                    })
+                }else{
+                    res.send({
+                        success: false,
+                        message: "Incorrect password."
+                    })
+                }
+            }else{
+                
+                res.send({
+                    success: false,
+                    message: "Brand not found"
+                })
+            }
+        })
+    }catch(e){
+        res.send({
+            success: false,
+            message: e.message
+        })
+    } 
 }

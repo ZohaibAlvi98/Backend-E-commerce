@@ -458,7 +458,7 @@ exports.NotificationForApproval = function(user,token){
         <td bgcolor="#f0ff47" align="left" style="border-radius:4px;" width="200" height="50">
         <div class="contentEditableContainer contentTextEditable">
         <div class="contentEditable" align='center' >
-        <a target='_blank' href="https://admin.lyve.fm/#/admin/user/list/manager" class='link2' style="text-decoration: none; color: #000;">View Admin Dashboard</a>
+        <a target='_blank' href="http://localhost:3000/" class='link2' style="text-decoration: none; color: #000;">View Admin Dashboard</a>
         </div>
         </div>
         </td>
