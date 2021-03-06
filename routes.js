@@ -12,6 +12,8 @@ module.exports = function(app){
     app.use('/api/brandSession', require('./api/brandSession'));
 
     app.use('/api/brands', require('./api/brands'));
+    app.use('/api/product', require('./api/product'));
+
     app.use('/api/admin/user-admin', require('./api/admin/user-admin'));
 
 
