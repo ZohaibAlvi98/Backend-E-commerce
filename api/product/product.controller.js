@@ -69,3 +69,12 @@ exports.getAll = async(req,res) =>{
         })
     }
 }
+
+exports.all = async(req,res)=>{
+    await ProductModel.find({},async(err,pro)=>{
+        res.send({
+            success: true,
+            product: pro
+        })
+    })
+}

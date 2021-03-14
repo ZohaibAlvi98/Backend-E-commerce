@@ -10,4 +10,6 @@ router.post('/create-product',auth.isBrandAuthenticated(), controller.createProd
 
 router.get('/fetch-all-products',auth.isBrandAuthenticated(), controller.getAll)
 
+router.get('all-random-products',controller.all)
+
 module.exports = router;
