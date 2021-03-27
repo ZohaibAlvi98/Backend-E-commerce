@@ -26,6 +26,12 @@ app.get('/dist-user-images/:filename', function(req, res) {
   res.sendFile(path.resolve('./dist/App/assets/images/user/' + filename));
 });
 
+app.get('/images/products/:filename', function(req, res) {
+  var filename = req.params.filename.replace(/'/g, '');
+  res.sendFile(path.resolve('./images/brands/products/' + filename));
+});
+
+
 app.use(function(req, res, next) {
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', '*');

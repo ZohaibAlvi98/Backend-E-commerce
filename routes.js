@@ -17,8 +17,6 @@ module.exports = function(app){
     app.use('/api/admin/user-admin', require('./api/admin/user-admin'));
 
 
-
-
     app.route('/*')
         .get(function(req, res) {
             // Commented path is for angular 6 build post production
