@@ -71,10 +71,40 @@ exports.getAll = async(req,res) =>{
 }
 
 exports.all = async(req,res)=>{
+    var obj = {};
+    var products=[];
     await ProductModel.find({},async(err,pro)=>{
+        Promise.all(pro.map(async (p) =>{
+            await BrandModel.findById(p.brandId,async(err,brand)=>{
+               obj['logo'] = brand.logo
+               obj['brandName'] = brand.brandName
+               obj['brandId'] = p.brandId
+               obj['photo1'] = p.photo1
+               obj['photo2'] = p.photo2
+               obj['photo3'] = p.photo3
+               obj['price'] = p.price
+               obj['name'] = p.name
+               obj['_id'] = p._id
+               products.push(obj)
+           
+                
+            })
+        })).then(()=>{
+            console.log('yo');
+            res.send({
+                success: true,
+                product: products
+            })
+        })
+      
+    })
+}
+
+exports.fetchById = async(req,res)=>{
+    await ProductModel.findById(req.params.id,async(err,product)=>{
         res.send({
             success: true,
-            product: pro
+            product: product
         })
     })
 }

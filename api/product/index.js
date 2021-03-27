@@ -12,4 +12,6 @@ router.get('/fetch-all-products',auth.isBrandAuthenticated(), controller.getAll)
 
 router.get('/all-random-products',controller.all)
 
+router.get('/product-by-id/:id',controller.fetchById)
+
 module.exports = router;
