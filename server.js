@@ -31,6 +31,12 @@ app.get('/images/products/:filename', function(req, res) {
   res.sendFile(path.resolve('./images/brands/products/' + filename));
 });
 
+app.get('/images/logo/:filename', function(req, res) {
+  var filename = req.params.filename.replace(/'/g, '');
+  res.sendFile(path.resolve('./images/brands/logo/' + filename));
+});
+
+
 
 app.use(function(req, res, next) {
   // Website you wish to allow to connect
