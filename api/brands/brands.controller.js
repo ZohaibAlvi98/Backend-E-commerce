@@ -5,6 +5,7 @@ const path = require('path');
 var crypto = require('crypto');
 const UtilService = require('../utility/util')
 const htmlTemplateService = require('../utility/htmltemplate')
+const ProductModel = require('../product/product-model')
 
 // const UserService = require('./user.service');
 // const UserModel = require('./user.model'); 
@@ -86,6 +87,19 @@ exports.create = async(req,res)=>{
             message: e.message
     })
     }
+}
+
+exports.brandById = async(req,res) =>{
+    await BrandModel.findById(req.params.id,async(err,brand)=>{
+        await ProductModel.find({brandId: req.params.id},async(err,pro)=>{
+            res.send({
+                success:true,
+                brand: brand,
+                product: pro
+            })
+        })
+        
+    })
 }
 
 exports.activateAccount = async(req,res)=>{

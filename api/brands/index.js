@@ -14,4 +14,6 @@ router.get('/activate-account/:token', controller.activateAccount);
 
 router.post('/brand-login',controller.login)
 
+router.get('/brand-by-id/:id',controller.brandById)
+
 module.exports = router;
