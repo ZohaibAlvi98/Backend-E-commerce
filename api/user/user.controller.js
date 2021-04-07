@@ -82,7 +82,7 @@ exports.update = async function(req,res){
 
 exports.login = async function(req, res){
     try{
-      
+        console.log(req.params)
         let {email, password} = req.body
         console.log(req.body)
         await UserModel.findOne({

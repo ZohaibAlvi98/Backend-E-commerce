@@ -8,5 +8,4 @@ var router = express.Router();
 
 router.post('/approve-account',auth.isAdmin(),controller.profileApprove)
 
-
 module.exports = router;
