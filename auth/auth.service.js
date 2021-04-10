@@ -11,6 +11,8 @@ function isAuthenticated() {
     return compose()
         // Attach user to request
         .use(function(req, res, next) {
+          req.query.token = req.header('Authorization_Token')
+
             SessionModel.findById(req.query.token, (err,session)=>{
                 if(session!=null&&session.isDeleted==false){
                     UserModel.findById(session.user, (err, user)=>{
