@@ -2,6 +2,9 @@ const CartModel = require('./cart.model')
 
 exports.addToCart = async(req,res)=>{
     await CartModel.create(req.body,async(err,cart)=>{
+        if(err){
+            console.log(err)
+        }
         res.send({
             success:true,
             product:cart
