@@ -10,4 +10,7 @@ router.post('/add-to-cart',auth.isAuthenticated(), controller.addToCart);
 
 router.get('/getAll',auth.isAuthenticated(),controller.getAll)
 
+router.get('/remove/:id',auth.isAuthenticated(),controller.remove)
+
+
 module.exports = router;
