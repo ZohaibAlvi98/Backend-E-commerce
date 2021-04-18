@@ -104,13 +104,12 @@ exports.brandById = async(req,res) =>{
 
 exports.activateAccount = async(req,res)=>{
     try {
-        console.log('here')
-        console.log(req.params.token)
+      
         //
         let brand = await BrandModel.findOne({
             "accountActivated.token": req.params.token
         });
-        console.log(brand)
+      
         if (!brand) {
             return res.status(404).send({success: false, message:
             'Sorry we could not find this user in our system'});
@@ -132,7 +131,6 @@ exports.login = async function(req, res){
     try{
       
         let {email, password} = req.body
-        console.log(req.body)
        
         await BrandModel.findOne({
             email

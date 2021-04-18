@@ -15,7 +15,7 @@ exports.addToCart = async(req,res)=>{
             req.body['userId'] = req.user._id
             await CartModel.create(req.body,async(err,cart)=>{
                 if(err){
-                    console.log(err)
+                    (err)
                 }
                 res.send({
                     success:true,
@@ -28,7 +28,7 @@ exports.addToCart = async(req,res)=>{
 
 exports.getAll = async(req,res)=>{
     await CartModel.find({userId: req.user._id},async(err,carts)=>{
-        console.log(carts)
+        (carts)
         res.send({
             success: true,
             product: carts
@@ -38,9 +38,9 @@ exports.getAll = async(req,res)=>{
 
 
 exports.remove = async(req,res)=>{
-    console.log(req.params.id)
+    (req.params.id)
     await CartModel.findByIdAndDelete(req.params.id.toString(),async(err,carts)=>{
-       console.log(carts)
+       (carts)
         res.send({
             success: true,
             product: carts

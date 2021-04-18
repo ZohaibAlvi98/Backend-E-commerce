@@ -86,7 +86,7 @@ exports.all = async(req,res)=>{
             console.log('yo');
             res.send({
                 success: true,
-                product: products
+                product: products.reverse()
             })
         })
       
