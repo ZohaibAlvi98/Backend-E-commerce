@@ -21,7 +21,7 @@ exports.create = async(req,res)=>{
    
 
     console.log(req.body)
-    req.body.product.map(async pro =>{
+    Promise.all(req.body.product.map(async pro =>{
         pro['orderId'] = val
         pro['userId'] = req.user._id
         pro['userName'] = req.user.fullName
@@ -58,24 +58,36 @@ exports.create = async(req,res)=>{
                           const to = brand.companyContactNumber
                           const text = `A User just placed an order on MMZEE application. Username: ${req.user.fullName},city: ${pro.city},\nIgnore the below lines`
                           
-                         await vonage.message.sendSms(from, to, text, (err, responseData) => {
-                              if (err) {
-                                //   console.log(err);
-                              } else {
-                                  if(responseData.messages[0]['status'] === "0") {
-                                      console.log("Message sent successfully.");
-                                      res.send({
-                                        success: true,
-                                        noti:noti
-                                    })
-                                  } 
-                              }
-                          })
+                        //  await vonage.message.sendSms(from, to, text, (err, responseData) => {
+                              
+                        //     if (err) {
+                        //           console.log(err);
+                        //       } else {
+                        //           if(responseData.messages[0]['status'] === "0") {
+                        //               console.log("Message sent successfully.");
+                                      
+                        //           } 
+                        //       }
+                        //   })
+                         
+                        const accountSid = 'AC93e363ce0543024dd21a022997af21bf';
+                        const authToken = 'cbfec241e58fb8e7c1c4ce80627c8c18';
+                        const client = require('twilio')(accountSid, authToken);
+                        
+                        await client.messages
+                              .create({body: 'Hi there!', from: '+16062682691', to: '+923340265566'})
+                              .then(message => console.log(message.sid));
+                     
                        
                     })
                 })
               
             }
+        })
+    })).then(()=>{
+        res.send({
+            success: true,
+            
         })
     })
    
