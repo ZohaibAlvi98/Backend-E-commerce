@@ -70,13 +70,13 @@ exports.create = async(req,res)=>{
                         //       }
                         //   })
                          
-                        const accountSid = 'AC93e363ce0543024dd21a022997af21bf';
-                        const authToken = 'cbfec241e58fb8e7c1c4ce80627c8c18';
-                        const client = require('twilio')(accountSid, authToken);
+                        // const accountSid = 'AC93e363ce0543024dd21a022997af21bf';
+                        // const authToken = 'cbfec241e58fb8e7c1c4ce80627c8c18';
+                        // const client = require('twilio')(accountSid, authToken);
                         
-                        await client.messages
-                              .create({body: 'Hi there!', from: '+16062682691', to: '+923340265566'})
-                              .then(message => console.log(message.sid));
+                        // await client.messages
+                        //       .create({body: 'Hi there!', from: '+16062682691', to: brand.companyContactNumber})
+                        //       .then(message => console.log(message.sid));
                      
                        
                     })
@@ -98,4 +98,20 @@ exports.create = async(req,res)=>{
 })
 }
 
+}
+
+exports.getNotification = async(req,res)=>{
+    try{
+        await NotificationModel.find({brandId: req.brand._id},async(err,noti)=>{
+        res.send({
+            success: true,
+            noti: noti
+        })
+    })
+    }catch(e){
+        res.send({
+            success: true,
+            message: e.message
+    })
+    }
 }
