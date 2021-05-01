@@ -2,15 +2,15 @@ const mongoose = require('mongoose');
 
 const Notification = new mongoose.Schema({
    brandId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     required: true
    },
    userId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     required: true
    },
-   prodId: {
-    type: mongoose.Schema.Types.ObjectId,
+   productId: {
+    type:String,
     required: true
    },
    brandName:{

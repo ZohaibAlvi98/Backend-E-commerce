@@ -17,6 +17,10 @@ const CartSchema = new mongoose.Schema({
        type: Number,
        required: true,
    },
+   confirmOrder:{
+    type: Boolean,
+    default: false
+   },
    quantity:{
        type: Number
    },
