@@ -76,10 +76,10 @@ exports.create = async(req,res)=>{
                         //   })
                          
         
-                        const client = require('twilio')(process.env.accountSid, process.env.authToken);
+                        // const client = require('twilio')(process.env.accountSid, process.env.authToken);
                         
-                        await client.messages
-                              .create({body: `A User just placed an order on MMZEE application. Username: ${req.user.fullName},city: ${pro.city}`, from: '+16062682691', to: '+'+brand.companyContactNumber})
+                        // await client.messages
+                        //       .create({body: `A User just placed an order on MMZEE application. Username: ${req.user.fullName},city: ${pro.city}`, from: '+16062682691', to: '+'+brand.companyContactNumber})
     
                      await cartModel.findOneAndUpdate({userId: req.user._id, confirmOrder: false},{confirmOrder: true},async(err,cart)=>{
                          if(err){
