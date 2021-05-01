@@ -46,14 +46,14 @@ exports.create = async(req,res)=>{
                         if(err){
                           
                         }
-                        let emailtoken = UtilService.generateRandomToken();
-                        let htmlTemplate =  htmlTemplateService.orderPlaced( req.user, pro.name, pro.price );
-                        let htmlForOrderRequest = htmlTemplateService.notificationForOrder(  req.user, pro.name, pro.price );
+                        // let emailtoken = UtilService.generateRandomToken();
+                        // let htmlTemplate =  htmlTemplateService.orderPlaced( req.user, pro.name, pro.price );
+                        // let htmlForOrderRequest = htmlTemplateService.notificationForOrder(  req.user, pro.name, pro.price );
                 
-                        // sending email to user for account activation
-                        // unionliveappdev@gmail.com
-                        await UtilService.sendEmail(brand.email,'Order Request',htmlTemplate)
-                        await UtilService.sendEmail('mmzee.org@gmail.com','Order Request',htmlForOrderRequest)
+                        // // sending email to user for account activation
+                        // // unionliveappdev@gmail.com
+                        // await UtilService.sendEmail(brand.email,'Order Request',htmlTemplate)
+                        // await UtilService.sendEmail('mmzee.org@gmail.com','Order Request',htmlForOrderRequest)
                         
                         // const vonage = new Vonage({
                         //     apiKey: "e0fc0d74",
