@@ -16,4 +16,9 @@ router.post('/brand-login',controller.login)
 
 router.get('/brand-by-id/:id',controller.brandById)
 
+router.get('/brand-by-token',auth.isBrandAuthenticated(),controller.brandByToken)
+
+router.get('/update/:id',auth.isBrandAuthenticated(),controller.update)
+
+
 module.exports = router;

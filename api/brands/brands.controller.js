@@ -90,6 +90,7 @@ exports.create = async(req,res)=>{
 }
 
 exports.brandById = async(req,res) =>{
+    console.log(req.brand)
     await BrandModel.findById(req.params.id,async(err,brand)=>{
         await ProductModel.find({brandId: req.params.id},async(err,pro)=>{
             res.send({
@@ -101,6 +102,21 @@ exports.brandById = async(req,res) =>{
         
     })
 }
+
+exports.brandByToken = async(req,res) =>{
+   
+    await BrandModel.findById(req.brand._id,async(err,brand)=>{
+        await ProductModel.find({brandId: req.brand._id},async(err,pro)=>{
+            res.send({
+                success:true,
+                brand: brand,
+                product: pro
+            })
+        })
+        
+    })
+}
+
 
 exports.activateAccount = async(req,res)=>{
     try {
@@ -173,4 +189,20 @@ exports.login = async function(req, res){
             message: e.message
         })
     } 
+}
+
+exports.update = async(req,res)=>{
+    try{
+        await ProductModel.findOneAndUpdate({brandId: req.brand._id, _id: req.params.id},req.body,async(err,pro)=>{
+        res.send({
+            success: true,
+            product: pro
+        })
+    })
+    }catch(e){
+        res.send({
+            success: false,
+            message: e.message
+        })
+    }
 }

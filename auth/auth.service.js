@@ -34,7 +34,7 @@ function isBrandAuthenticated() {
   return compose()
       // Attach user to request
       .use(function(req, res, next) {
-        console.log(req.header('Authorization_Br_Token'))
+        
         req.query.token = req.header('Authorization_Br_Token')
           BrandSessionModel.findById(req.query.token, (err,session)=>{
               if(session!=null&&session.isDeleted==false){
