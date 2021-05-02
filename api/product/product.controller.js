@@ -101,3 +101,20 @@ exports.fetchById = async(req,res)=>{
         })
     })
 }
+
+exports.remove = async(req,res)=>{
+    try{
+        console.log(req.params.id)
+        await ProductModel.findByIdAndRemove(req.params.id,async(err,pro)=>{
+        res.send({
+            success: true,
+            product: pro
+        })
+    })
+}catch(e){
+    res.send({
+        success: false,
+        message: e.message
+    })
+}
+}
