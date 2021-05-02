@@ -21,7 +21,7 @@ exports.fetchAllBrands = async(req,res)=>{
         await BrandModel.find({},async(err,brnds)=>{
         res.send({
             success: true,
-            brands: brnds
+            product: brnds
         })
     })
     }catch(e){
