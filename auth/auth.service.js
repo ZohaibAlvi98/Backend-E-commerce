@@ -57,6 +57,8 @@ function isAdmin() {
     return compose()
         // Attach user to request
         .use(function(req, res, next) {
+          req.query.token = req.header('token')
+          console.log(req.query.token)
             SessionModel.findById(req.query.token, (err, sessions) => {
                 if (err) {
                   //console.log("err", err);

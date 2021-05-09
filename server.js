@@ -36,7 +36,15 @@ app.get('/images/logo/:filename', function(req, res) {
   res.sendFile(path.resolve('./images/brands/logo/' + filename));
 });
 
+app.get('/images/ownerPhoto/:filename', function(req, res) {
+  var filename = req.params.filename.replace(/'/g, '');
+  res.sendFile(path.resolve('./images/brands/ownerPhoto/' + filename));
+});
 
+app.get('/images/cnic/:filename', function(req, res) {
+  var filename = req.params.filename.replace(/'/g, '');
+  res.sendFile(path.resolve('./images/brands/cnic/' + filename));
+});
 
 app.use(function(req, res, next) {
   // Website you wish to allow to connect

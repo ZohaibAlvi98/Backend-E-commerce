@@ -32,6 +32,39 @@ exports.fetchAllBrands = async(req,res)=>{
     }
 }
 
+exports.fetchAllBrandsApproved = async(req,res)=>{
+    try{
+        await BrandModel.find({adminApproval: true},async(err,brnds)=>{
+        res.send({
+            success: true,
+            product: brnds.reverse()
+        })
+    })
+    }catch(e){
+        res.send({
+            success: true,
+            message: e.message
+    })
+    }
+}
+
+exports.fetchAllBrandsUnApproved = async(req,res)=>{
+    try{
+        await BrandModel.find({adminApproval: false},async(err,brnds)=>{
+            console.log(brnds)
+        res.send({
+            success: true,
+            product: brnds.reverse()
+        })
+    })
+    }catch(e){
+        res.send({
+            success: true,
+            message: e.message
+    })
+    }
+}
+
 exports.create = async(req,res)=>{
     try{
      

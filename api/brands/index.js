@@ -8,6 +8,10 @@ var router = express.Router();
 
 router.get('/fetch-all-brands',controller.fetchAllBrands);
 
+router.get('/fetch-all-brands-approved',controller.fetchAllBrandsApproved);
+
+router.get('/fetch-all-brands-UnApproved',controller.fetchAllBrandsUnApproved);
+
 router.post('/create',controller.create);
 
 router.get('/activate-account/:token', controller.activateAccount);
@@ -18,7 +22,7 @@ router.get('/brand-by-id/:id',controller.brandById)
 
 router.get('/brand-by-token',auth.isBrandAuthenticated(),controller.brandByToken)
 
-router.get('/update/:id',auth.isBrandAuthenticated(),controller.update)
+router.post('/update/:id',auth.isBrandAuthenticated(),controller.update)
 
 
 module.exports = router;
